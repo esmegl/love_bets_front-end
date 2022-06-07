@@ -3,8 +3,8 @@
     <div v-if="!isAuthenticated" class="q-px-md">
       <q-btn
         @click="showLogin = true"
-        color="secondary"
-        text-color="black"
+        color="white"
+        text-color="primary"
         label="Login"
       />
     </div>

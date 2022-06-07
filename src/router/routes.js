@@ -2,7 +2,14 @@ const routes = [
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("pages/Index.vue") }]
+    children: [
+      { path: "", component: () => import("pages/Index.vue") },
+      { path: "/about", component: () => import("pages/About.vue") },
+      { path: "/how_does_it_work", component: () => import("pages/HowItWorks.vue") },
+      { path: "/highscores", component: () => import("pages/Highscores.vue") },
+      { path: "/contact", component: () => import("pages/Contact.vue") },
+      { path: "/donate", component: () => import("pages/Donate.vue") }
+    ]
   },
   {
     path: "/account/:accountName",

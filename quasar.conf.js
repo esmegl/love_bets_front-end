@@ -126,8 +126,8 @@ module.exports = function(/* ctx */) {
       workboxPluginMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: `Telos Quasar Template`,
-        short_name: `Telos Quasar Template`,
+        name: `Lovebets`,
+        short_name: `Lovebets`,
         description: `A template for using Vue+Quasar to build a Telos webapp`,
         display: "standalone",
         orientation: "portrait",
