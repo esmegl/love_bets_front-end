@@ -1,46 +1,17 @@
-# Telos Quasar Template (telos-template)
+#About Lovebets
 
-A template for using Vue+Quasar to build a Telos webapp
+Lovebets is a project that allows you to register your marriage on the Telos blockchain and bet you will be together until death do you part.
 
-## Install the dependencies
+You can choose your ministier and invite all the witnesses you want!
 
-### Install yarn package manager 
-Follow the installation instructions at:
-https://classic.yarnpkg.com/en/
+Do you want to tell everyone how much you love your significant other?
+With Lovebets you can do it!
+You will be able to see the marriage's high scores, the more time you are married and the more you pay, the more points you get!
 
-### Add Vue and Quasar packages
-```bash
-yarn global add @vue/cli
-yarn global add @quasar/cli
-```
-### Clone this repo to your local machine
-### Copy the example .env file to .env
-```bash
-cp .env.example .env
-```
-## Prep the environment
-From within the ui-template folder:
-```bash
-yarn
-```
+Are you polyamorous? Lovebets is also for you!
+Since it also allows you to marry with multilple people.
 
-## Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+Don't stop being in the last vanguard of thechnology.
 
-## Lint the files
-```bash
-yarn run lint
-```
-
-## Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
-
-### More Information
-See  [https://quasar.dev](https://quasar.dev/).
+Marriage not going so well? Don't worry!
+You can also divorce and your union will stop appearing on the blockchain. It is like a tattoo, it costs to get it and it costs to erase it.
