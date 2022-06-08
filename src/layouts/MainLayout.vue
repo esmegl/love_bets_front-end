@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar class="bg-primary">
         <q-btn
           flat
           dense
@@ -10,151 +10,151 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-
-        <q-toolbar-title>
-          Welcome!
+        
+        <q-img src="~assets/lovebets_icon_side.png" class="center" style=" height: 40px; width: 40px; padding-left: 20px, padding-right: 20px"/>
+        
+        <q-toolbar-title style="padding-left: 10px">
+          Lovebets
         </q-toolbar-title>
 
-        <q-btn-dropdown color="primary" label="Language" dropdown-icon="language">
-          <q-list>
-            <q-item clickable v-close-popup @click="onItemClick">
-              <q-item-section>
-                <q-item-label>English</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-close-popup @click="onItemClick">
-              <q-item-section>
-                <q-item-label>Español</q-item-label>
-              </q-item-section>
-            </q-item>
-
-          </q-list>
-        </q-btn-dropdown>
-
         <login-button></login-button>
-
-        <!-- Dark mode -->
-        <q-btn clickable @click="onItemClick">
-          <q-item-section >
-            <q-icon name="dark_mode" size="md"/>
-          </q-item-section>
-        </q-btn>
 
       </q-toolbar>
     </q-header>
 
     <q-drawer
-       v-model="leftDrawerOpen"
-        show-if-above
-        :width="300"
-        :breakpoint="400"
+      v-model="leftDrawerOpen"
+      show-if-above
+      :width="350"
+      :breakpoint="400"
+      color="primary"
     >
 
-    <q-img class="absolute-top" src="../assets/heart_card_3.jpg" style="height: 150px">
-      <div class="absolute-bottom bg-transparent">
-        <q-avatar size="56px" class="q-mb-sm">
-          <!-- Account avatar -->
-        </q-avatar>
-        <div class="text-weight-bold" style=" color: #940213ff">
-          Lovebets
+      <q-img class="absolute-top" src="../assets/heart_card_3.jpg" style="height: 150px">
+        <div class="absolute-bottom bg-transparent">
+          <div class="text-weight-bold" style=" color: #940213ff">
+            Lovebets
+          </div>
         </div>
-      </div>
-    </q-img>  
+      </q-img>  
 
-    <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
-      <q-list padding>
+      <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
+        <q-list padding>
 
-        <q-item to="/" exact clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="home" />
-          </q-item-section>
+          <q-item to="/" exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="home" />
+            </q-item-section>
 
-          <q-item-section>
-            Home
-          </q-item-section>
-        </q-item>
+            <q-item-section>
+              Home
+            </q-item-section>
+          </q-item>
 
-        <q-item to="/about" exact clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="help" />
-          </q-item-section>
+          <q-item to="/how_does_it_work" exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="info" />
+            </q-item-section>
 
-          <q-item-section>
-            About Lovebets
-          </q-item-section>
-        </q-item>
+            <q-item-section>
+              How does Lovebets work?
+            </q-item-section>
+          </q-item>
 
-        <q-item to="/how_does_it_work" exact clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="info" />
-          </q-item-section>
+          <q-item to="/highscores" exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="leaderboard" />
+            </q-item-section>
 
-          <q-item-section>
-            How does Lovebets work?
-          </q-item-section>
-        </q-item>
+            <q-item-section>
+              Highscores
+            </q-item-section>
+          </q-item>
 
-        <q-item to="/highscores" exact clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="leaderboard" />
-          </q-item-section>
+          <q-item to="/contact" exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="mail"/>
+            </q-item-section>
 
-          <q-item-section>
-            Highscores
-          </q-item-section>
-        </q-item>
+            <q-item-section>
+              Contact
+            </q-item-section>
+          </q-item>
 
-        <q-item to="/contact" exact clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="mail"/>
-          </q-item-section>
+          <q-item to="/donate" exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="favorite" />
+            </q-item-section>
 
-          <q-item-section>
-            Contact
-          </q-item-section>
-        </q-item>
+            <q-item-section>
+              Donate
+            </q-item-section>
+          </q-item>
 
-        <q-item to="/donate" exact clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="favorite" />
-          </q-item-section>
+          <q-item exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="language" />
+            </q-item-section>
 
-          <q-item-section>
-            Donate
-          </q-item-section>
-        </q-item>
+            <q-item-section>
+              Language
+            </q-item-section>
+          </q-item>
 
-        <q-item to="/bug_report" exact clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="bug_report" />
-          </q-item-section>
+          <q-item exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="dark_mode" />
+            </q-item-section>
 
-          <q-item-section>
-            Bug report
-          </q-item-section>
-        </q-item>
+            <q-item-section>
+              Theme
+            </q-item-section>
+          </q-item>
 
-        <!-- <q-item-label header class="text-grey-8">
-          Example pages
-        </q-item-label>
-        <ExamplePage
-          v-for="link in examplePages"
-          :key="link.title"
-          v-bind="link"
-        />
-        <q-item-label header class="text-grey-8">
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        /> -->
+          <!-- <q-btn-dropdown color="primary" label="Language" dropdown-icon="language">
+            <q-list>
+              <q-item clickable v-close-popup @click="onItemClick">
+                <q-item-section>
+                  <q-item-label>English</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup @click="onItemClick">
+                <q-item-section>
+                  <q-item-label>Español</q-item-label>
+                </q-item-section>
+              </q-item>
+
+            </q-list>
+          </q-btn-dropdown> -->
+
+          <!-- Dark mode -->
+          <!-- <q-btn clickable @click="onItemClick">
+            <q-item-section >
+              <q-icon name="dark_mode" size="md"/>
+            </q-item-section>
+          </q-btn> -->
+
+          <!-- <q-item-label header class="text-grey-8">
+            Example pages
+          </q-item-label>
+          <ExamplePage
+            v-for="link in examplePages"
+            :key="link.title"
+            v-bind="link"
+          />
+          <q-item-label header class="text-grey-8">
+            Essential Links
+          </q-item-label>
+          <EssentialLink
+            v-for="link in essentialLinks"
+            :key="link.title"
+            v-bind="link"
+          /> -->
 
 
-      </q-list>
-    </q-scroll-area> 
+        </q-list>
+      </q-scroll-area> 
 
     </q-drawer>
 
