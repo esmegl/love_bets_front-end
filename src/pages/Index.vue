@@ -8,10 +8,10 @@
       </div>
       <div class="row" style="height: 300px">
         <div class="col-6 self-center center">
-          <q-btn class="btn bg-primary text-white">Get married!</q-btn>
+          <q-btn to="/test_form" class="btn bg-primary text-white">Get married!</q-btn>
         </div>
         <div class="col-6 self-center center">  
-          <q-btn to="/how_does_it_work" class="btn bg-white text-primary">How does it work?</q-btn>
+          <q-btn to="/how_does_it_work" class="btn bg-white text-primary">How it works?</q-btn>
         </div>  
       </div>  
     </div>  
@@ -33,7 +33,7 @@
           </q-card-section>   
             <q-separator dark inset />
           <q-card-section> 
-            <div class="test-ubtitle2">
+            <div class="test-subtitle2">
               Lovebets is a project that allows you to register your marriage on the Telos blockchain and bet you will be together until death do you part.
             </div>  
             
@@ -108,8 +108,20 @@
     align-items: center; 
   }
 
+  .justify-right {
+    display: flex;
+    justify-content: right;
+    align-items: center; 
+  }
+
+  .justify-left {
+    display: flex;
+    justify-content: right;
+    align-items: center; 
+  }
+
   .lovebets-logo {
-    font-family: "OpenSans";
+    font-family: 'Sans';
   }
 
   .btn {
@@ -123,7 +135,7 @@
   }
 
   .bg-image {
-    background-image: url(../assets/rings_4.jpg);
+    background-image: url(../assets/rings_3.jpg);
     background-repeat: no-repeat;
     background-position: center; 
     background-size: auto;
@@ -131,52 +143,3 @@
 
 </style>
 
-<!-- <script>
-import { mapGetters, mapActions } from "vuex";
-
-export default {
-  data() {
-    return {
-      to: null,
-      amount: null,
-      memo: null,
-      showTransaction: null,
-      transaction: null,
-      explorerUrl: process.env.NETWORK_EXPLORER
-    };
-  },
-  computed: {
-    ...mapGetters("account", ["isAuthenticated", "accountName"])
-  },
-  methods: {
-    ...mapActions("account", ["accountExists"]),
-    async send() {
-      if (!(await this.accountExists(this.to))) {
-        this.$q.notify({
-          type: "negative",
-          message: `Account ${this.to} does not exist`
-        });
-        return;
-      }
-
-      const actions = [
-        {
-          account: "eosio.token",
-          name: "transfer",
-          data: {
-            from: this.accountName.toLowerCase(),
-            to: this.to,
-            quantity: `${parseFloat(this.amount).toFixed(4)} TLOS`,
-            memo: this.memo
-          }
-        }
-      ];
-      const transaction = await this.$store.$api.signTransaction(actions);
-      if (transaction) {
-        this.showTransaction = true;
-        this.transaction = transaction.transactionId;
-      }
-    }
-  }
-};
-</script> -->

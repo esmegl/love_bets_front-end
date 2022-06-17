@@ -1,106 +1,128 @@
 <template>
-	<div class="q-pa-md q-gutter-y-md" style="max-width: 720px" > 
+	<div class="q-pa-md"> 
 
-		<!-- Minister -->
- 		<div class="row justify-start" >
-			<div>Minister name</div>
-		</div>	
+		<q-form
+			@submit="onSubmit"
+			@reset="onReset"
+			class="q-gutter-md"
+			style="max-width: 720px" 
+			autocorrect="off"
+			autocapitalize="off"
+			autocomplete="off"
+			spellcheck="false"
+	    >
 
-		<div class="row justify-center" >
-	   		<div class="col">
-				<q-field color="blue" outlined label="Minister">
-			        <template v-slot:control>
-			          
-			        </template>
-			    </q-field>
-			</div>  
-		</div>	 
-
-		<div class="row justify-start" >
-			<div>Add the people that are going to marry</div>
-		</div>	 
-
-		<!-- Bettors -->
-	 	<div class="row">
-	   		<div class="col-8">
-				<q-field color="blue" outlined label="Account Name">
-			        <template v-slot:control>
-			          <div class="self-center full-width no-outline text-blue-grey" tabindex="0"></div>
-			        </template>
-			    </q-field>
-			</div>  
-			<div class="col-4">
-				<q-field color="blue" outlined label="Quantity to bet">
-			        <template v-slot:control>
-			          <div class="self-center full-width no-outline text-blue-grey" tabindex="0"></div>
-			        </template>
-			    </q-field>
-			</div>  
-		</div>	
-
-		<div class="row">
-	   		<div class="col-8">
-				<q-field color="blue" outlined label="Account Name">
-			        <template v-slot:control>
-			          <div class="self-center full-width no-outline text-blue-grey" tabindex="0"></div>
-			        </template>
-			    </q-field>
-			</div>  
-			<div class="col-4">
-				<q-field color="blue" outlined label="Quantity to bet">
-			        <template v-slot:control>
-			          <div class="self-center full-width no-outline text-blue-grey" tabindex="0"></div>
-			        </template>
-			    </q-field>
-			</div>  
-		</div>	 
-
-		<div class="row justify-end">
-			<div class="col-5 justify-right">
-				<q-btn color="blue" text-color="white" label="Add People" icon-right="add_circle"/>
+			<!-- Minister -->
+	 		<div class="row justify-start" >
+				<div>Minister account name</div>
 			</div>	
-		</div>	  
 
-		<!-- Loss -->
- 		<div class="row justify-start" >
-			<div>Set loss percentage</div>
-		</div>	
+			<div class="row justify-center" >
+		   		<div class="col">
+					<q-input  
+					label="Minister" 
+					color="blue"
+					lazy-rules
+        			:rules="[ val => val && val.length > 0 || 'The minister is requiered to start the marriage.']"/>
+				</div>  
+			</div>	 
 
-		<div class="col-4">
-			<q-field color="blue" outlined label="Loss">
-		        <template v-slot:control class="required">
-		          <div class="self-center full-width no-outline text-blue-grey" tabindex="0"></div>
-		        </template>
-		    </q-field>
-		</div>  
+			<div class="row justify-start" >
+				<div>Add the people that are going to marry</div>
+			</div>	 
 
-		<!-- Witnesses -->
- 		<div class="row justify-start" >
-			<div>Invite your witnesses</div>
-		</div>
-
-		<div class="row justify-center" >
-	   		<div class="col">
-				<q-field color="blue" outlined label="Witness account name">
-			        <template v-slot:control>
-			          <div class="self-center full-width no-outline text-blue-grey" tabindex="0"></div>
-			        </template>
-			    </q-field>
-			</div>  
-		</div>	
-
-		<div class="row justify-end">
-			<div class="col-5 justify-right">
-				<q-btn color="blue" text-color="white" label="Add Witness" icon-right="add_circle"/>
+			<!-- Bettors -->
+		 	<div class="row justify-between">
+		   		<div class="col-7">
+					<q-input  
+						label="Account name" 
+						color="blue"
+						lazy-rules
+        				:rules="[ val => val && val.length > 0 || 'Please input the account name of the first person']"/>
+				</div>  
+				<div class="col-4">
+					<q-input
+				        color="blue"
+				        label="Amount to bet"
+				        mask="#.####"
+				        fill-mask="0"
+				        reverse-fill-mask
+				        input-class="text-left"
+				        suffix="TELOS"
+				     />
+				</div>   
 			</div>	
-		</div>	
 
-		<div class="row">
-			<div class="col-4">
-				<q-btn color="blue" text-color="white" label="Start Marriage"/>
+			<div class="row justify-between">
+		   		<div class="col-7">
+					<q-input  
+						label="Account name" 
+						color="blue"
+						lazy-rules
+        				:rules="[ val => val && val.length > 0 || 'There has to be at least two people to marry']"/>
+				</div>  
+				<div class="col-4">
+					<q-input
+				        color="blue"
+				        label="Amount to bet"
+				        mask="#.####"
+				        fill-mask="0"
+				        reverse-fill-mask
+				        input-class="text-left"
+				        suffix="TELOS"
+				     />
+				</div>  
+			</div>	 
+
+			<div class="row justify-end">
+				<div class="col-5 justify-right">
+					<q-btn color="blue" text-color="white" label="Add People" icon-right="add_circle"/>
+				</div>	
+			</div>	  
+
+			<!-- Loss -->
+	 		<div class="row " >
+				<div>Set loss amount</div>
 			</div>	
-		</div>	
 
+			<div class="row">
+				<div class="col-4">
+					<q-input
+				        color="blue"
+				        label="Loss"
+				        mask="#.####"
+				        fill-mask="0"
+				        reverse-fill-mask
+				        suffix="LOSS"
+				     /> 
+				</div>  
+			</div>	
+
+			<!-- Witnesses -->
+	 		<div class="row justify-start" >
+				<div>Invite your witnesses</div>
+			</div>
+
+			<div class="row justify-center" >
+		   		<div class="col">
+					<q-input  
+						label="Witness account name" 
+						color="blue"/>
+				</div>  
+			</div>	
+
+			<div class="row justify-end">
+				<div class="col-5 justify-right">
+					<q-btn color="blue" text-color="white" label="Add Witness" icon-right="add_circle"/>
+				</div>	
+			</div>	
+
+			<div class="row">
+				<div class="col-4">
+					<q-btn color="blue" text-color="white" label="Start Marriage"/>
+				</div>	
+			</div>	
+		</q-form>
 	</div>	      
 </template> 
 

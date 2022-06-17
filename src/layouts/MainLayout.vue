@@ -11,10 +11,8 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
         
-        <q-img src="~assets/lovebets_icon_side.png" class="center" style=" height: 40px; width: 40px; padding-left: 20px, padding-right: 20px"/>
-        
         <q-toolbar-title style="padding-left: 10px">
-          Lovebets
+          Welcome!
         </q-toolbar-title>
 
         <login-button></login-button>
@@ -30,15 +28,10 @@
       color="primary"
     >
 
-      <q-img class="absolute-top" src="../assets/heart_card_3.jpg" style="height: 150px">
-        <div class="absolute-bottom bg-transparent">
-          <div class="text-weight-bold" style=" color: #940213ff">
-            Lovebets
-          </div>
-        </div>
-      </q-img>  
+      <q-btn class="float-right" icon="arrow_forward"/>
 
-      <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
+      <q-scroll-area style="height: calc(100% - 150px); margin-top: 50px; border-right: 1px solid #ddd">
+
         <q-list padding>
 
           <q-item to="/" exact clickable v-ripple>
@@ -58,6 +51,16 @@
 
             <q-item-section>
               How does Lovebets work?
+            </q-item-section>
+          </q-item>
+
+          <q-item to="/test_form" exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="bug_report" />
+            </q-item-section>
+
+            <q-item-section>
+              Test form
             </q-item-section>
           </q-item>
 
