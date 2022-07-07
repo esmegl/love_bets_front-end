@@ -6,6 +6,7 @@
         color="white"
         text-color="primary"
         label="Login"
+        icon="login"
       />
     </div>
     <div v-if="isAuthenticated" class="q-px-md row">
@@ -14,9 +15,10 @@
       </div>
       <q-btn
         @click="logout"
-        color="secondary"
-        text-color="black"
+        color="white"
+        text-color="primary"
         label="Logout"
+        icon-right="logout"
       />
     </div>
     <q-dialog v-model="showLogin">

@@ -8,10 +8,16 @@
       </div>
       <div class="row" style="height: 300px">
         <div class="col-6 self-center center">
-          <q-btn to="/test_form" class="btn bg-primary text-white">Get married!</q-btn>
+          <q-btn 
+          to="/get_married" 
+          class="btn bg-primary text-white"
+          label="Get married!"/>
         </div>
         <div class="col-6 self-center center">  
-          <q-btn to="/how_does_it_work" class="btn bg-white text-primary">How it works?</q-btn>
+          <q-btn 
+          to="/how_does_it_work" 
+          class="btn bg-white text-primary"
+          label="How it works?"/>
         </div>  
       </div>  
     </div>  
@@ -23,7 +29,9 @@
           About this project
         </h3>
       </div> 
+    </div>  
 
+    <div class="row q-pa-sm justify-center">  
       <div class="col-3 text-blue-grey-10 text-left">
         <q-card flat>
           <q-card-section> 
