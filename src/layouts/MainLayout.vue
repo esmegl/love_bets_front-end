@@ -24,14 +24,22 @@
       v-model="leftDrawerOpen"
       show-if-above
       :width="350"
-      :breakpoint="400"
-      color="primary"
+      :breakpoint="350"
     >
 
-      <q-btn class="float-right" icon="arrow_forward"/>
+      <q-scroll-area style="height: calc(100% - 150px)">
 
-      <q-scroll-area style="height: calc(100% - 150px); margin-top: 50px; border-right: 1px solid #ddd">
-
+        <div class="justify-right" style="padding: 10px">
+          <q-btn
+            flat
+            dense
+            icon="arrow_back"
+            color="primary"
+            aria-label="Close Drawer"
+            @click="leftDrawerOpen = !leftDrawerOpen"
+          />
+        </div>  
+          
         <q-list padding>
 
           <q-item to="/" exact clickable v-ripple>
@@ -44,23 +52,33 @@
             </q-item-section>
           </q-item>
 
-          <q-item to="/how_does_it_work" exact clickable v-ripple>
+          <q-item to="/choose_role" exact clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="info" />
+              <q-icon name="favorite" />
             </q-item-section>
 
             <q-item-section>
-              How does Lovebets work?
+              Get Married!
             </q-item-section>
           </q-item>
 
-          <q-item to="/test_form" exact clickable v-ripple>
+          <q-item to="/test" exact clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="bug_report" />
             </q-item-section>
 
             <q-item-section>
-              Test form
+              Test
+            </q-item-section>
+          </q-item>
+
+          <q-item to="/how_to_use" exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="help" />
+            </q-item-section>
+
+            <q-item-section>
+              Guide to use Lovebets
             </q-item-section>
           </q-item>
 
@@ -84,13 +102,13 @@
             </q-item-section>
           </q-item>
 
-          <q-item to="/donate" exact clickable v-ripple>
+          <q-item to="/support_me" exact clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="favorite" />
+              <q-icon name="volunteer_activism" />
             </q-item-section>
 
             <q-item-section>
-              Donate
+              Support Me
             </q-item-section>
           </q-item>
 
@@ -138,7 +156,7 @@
             </q-item-section>
           </q-btn> -->
 
-          <!-- <q-item-label header class="text-grey-8">
+          <q-item-label header class="text-grey-8">
             Example pages
           </q-item-label>
           <ExamplePage
@@ -146,7 +164,7 @@
             :key="link.title"
             v-bind="link"
           />
-          <q-item-label header class="text-grey-8">
+          <!-- <q-item-label header class="text-grey-8">
             Essential Links
           </q-item-label>
           <EssentialLink
@@ -162,16 +180,14 @@
     </q-drawer>
 
     <q-page-container>
-      <keep-alive>
-        <router-view />
-      </keep-alive>
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
 // import EssentialLink from "components/EssentialLink.vue";
-// import ExamplePage from "components/ExamplePage.vue";
+import ExamplePage from "components/ExamplePage.vue";
 import LoginButton from "components/LoginButton.vue";
 
 const pagesData = [
@@ -241,14 +257,25 @@ const linksData = [
 
 export default {
   name: "MainLayout",
-  // components: { EssentialLink, ExamplePage, LoginButton },
-  components: { LoginButton },
+  components: { ExamplePage, LoginButton },
+
   data() {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      closeDrawer () {
+        leftDrawerOpen = false
+      },
       // essentialLinks: linksData,
-      // examplePages: pagesData
+      examplePages: pagesData
     };
   }
 };
 </script>
+
+<style>
+  .justify-right {
+    display: flex;
+    justify-content: right;
+    align-items: center; 
+  }
+</style>

@@ -9,15 +9,15 @@
       <div class="row" style="height: 300px">
         <div class="col-6 self-center center">
           <q-btn 
-          to="/get_married" 
+          to="/choose_role" 
           class="btn bg-primary text-white"
           label="Get married!"/>
         </div>
         <div class="col-6 self-center center">  
           <q-btn 
-          to="/how_does_it_work" 
+          to="/how_to_use" 
           class="btn bg-white text-primary"
-          label="How it works?"/>
+          label="Guide to use lovebets"/>
         </div>  
       </div>  
     </div>  
@@ -41,11 +41,11 @@
           </q-card-section>   
             <q-separator dark inset />
           <q-card-section> 
-            <div class="test-subtitle2">
+            <div class="q-pt-none">
               Lovebets is a project that allows you to register your marriage on the Telos blockchain and bet you will be together until death do you part.
             </div>  
             
-            <div class="test-subtitle2">
+            <div class="q-pt-none">
               You can choose your ministier and invite all the witnesses you want!
             </div> 
           </q-card-section>  
