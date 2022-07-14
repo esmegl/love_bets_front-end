@@ -2,9 +2,6 @@
 	<q-page class="column items-center">
 		<div class="q-pa-md" v-if="isAuthenticated"> 
 			<q-form
-				action="/some-url"
-				method="post"
-				@submit="onSubmit"
 				class="q-gutter-md"
 				style="max-width: 720" 
 				autocorrect="off"
@@ -13,14 +10,24 @@
 				spellcheck="false"
 		    > 
 
+		    	<!-- Minister -->
+		 		<div class="row justify-start" >Minister account name</div>
+
+				<div class="row justify-center" >
+			   		<div class="col text-h5 text-blue">
+						{{accountName}}
+					</div>  
+				</div>	
+
 		    	<!-- Bet name -->
 		    	<div class="row justify-start" >Put a name to the union</div>	
 
 				<div class="row justify-center" >
 			   		<div class="col">
-						<q-input  
+						<q-input 
+						clearable 
+						clear-icon="close" 
 						filled
-						stack-label="Put a name to your union"
 						name="bet_name"
 						v-model="bet_name"
 						label="Bet name" 
@@ -30,26 +37,7 @@
 						hide-hint
 					/>	
 					</div>  
-				</div> 
-
-				<!-- Minister -->
-		 		<!-- <div class="row justify-start" >Minister account name</div>
-
-				<div class="row justify-center" >
-			   		<div class="col">
-							<q-input  
-							filled
-							name="minister"
-							v-model="minister"
-							color="blue"
-							readonly
-							>	
-								<template v-slot:control>
-				          <div class="self-center full-width no-outline">{{accountName}}</div>
-				        </template>
-							</q-input>
-					</div>  
-				</div>	   -->
+				</div>   
 
 
 				<!-- Bettors -->
@@ -58,7 +46,9 @@
 
 			 	<div class="row justify-between">
 			   		<div class="col-7">
-						<q-input  
+						<q-input 
+						clearable 
+						clear-icon="close" 
 						filled
 						v-model="bettor_name"
 						label="Account name" 
@@ -76,7 +66,7 @@
 				        reverse-fill-mask
 				        input-class="text-left"
 				        suffix="TELOS"
-				        hint="The minimum amount allowed is 30 TELOS"
+				        hint="Minimum amount allowed is 30 TELOS"
 				        hide-hint
 					     />
 					</div>
@@ -149,11 +139,13 @@
 				</div>	
 
 				<!-- Witnesses -->
-		 		<div class="row justify-start" >Invite the witnesses</div>
+		 		<div class="row justify-start">Invite the witnesses</div>
 
 				<div class="row justify-center" >
 			   		<div class="col">
-						<q-input  
+						<q-input 
+						clearable
+						clear-icon="close" 
 						filled
 						v-model="witness"
 						label="Witness account name" 
@@ -181,12 +173,12 @@
 				>
 					<q-item
 					v-for="(witness, index) in witnesses"
-					:key="witness.name"
+					:key="witness"
 					>
-						<q-item-section v-if="witness.name != ''">
+						<q-item-section>
 							<div class="row justify-between">
 								<div class="col-5">
-									{{ witness.name }}
+									{{ witness }}
 								</div>
 								<q-btn 
 								flat  
@@ -209,7 +201,7 @@
 						color="blue" 
 						text-color="white" 
 						label="Start Wedding"
-						type="submit"/>
+						@click="initBet()"/>
 					</div>
 
 					<div class="col-4 justify-right">
@@ -224,7 +216,7 @@
 			</q-form>
 		</div>	
 
-		<!-- <q-page-sticky>
+		<q-page-sticky>
 			<q-card>
 				<q-card-section>
 					<pre> {{ $data }} </pre>
@@ -237,7 +229,7 @@
 				</q-btn>
 			</q-card-actions>
 
-		</q-page-sticky> -->	
+		</q-page-sticky>	
 
 	</q-page>	  
 </template> 
@@ -270,51 +262,42 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   	data () {
 	    return {
-				bet_name: '',
-				minister: '',
-				loss: 0,
-				bettor_name: '',
-				bettor_quantity: 0,
-				bettors: 
-				[
-					{
-						name: '',
-						amount: 0
-					}
-				],
-				witness: '',
-				witnesses: 
-				[
-					{
-						name: ''
-					}
-				],
-				accountHasProfile: false,
-				accountName: ''
+			bet_name: '',
+			loss: 0,
+			minister_control: '',
+			bettor_name: '',
+			bettor_names: [],
+			bettor_quantity: 0,
+			bettor_amounts: [],
+			bettors: 
+			[{
+				name: '',
+				amount: 0
+			}],
+			witness: '',
+			witnesses: [],
+			accountHasProfile: false,
+			requested: 
+			[{
+				actor: '',
+				permission: 'active'
+			}],
 	    }
   	},
 
   	computed: {
-	    ...mapGetters("account", ["isAuthenticated",
-      "accountName"]),
-	    userAvatar() 
-	    {
-	      if (this.avatar) return this.avatar;
-
-	      return "https://images.squarespace-cdn.com/content/54b7b93ce4b0a3e130d5d232/1519987165674-QZAGZHQWHWV8OXFW6KRT/icon.png?content-type=image%2Fpng";
-	    }
-	 	},
+	    ...mapGetters("account", ["isAuthenticated", "accountName"]),
+	},
 
   	methods: {
-  		getAccountName: function() {
-  			this.accountName = this.$route.params.accountName
-  		},
 
 	    addBettor: function() {
 	        this.bettors.push({
 	        	name: this.bettor_name,
 	        	amount: this.bettor_quantity
 	        });
+	        this.bettor_names.push(this.bettor_name);
+	        this.bettor_amounts.push(this.bettor_quantity);
 	        this.bettor_name = '';
 	        this.bettor_quantity = 0;
 	    },
@@ -324,7 +307,7 @@ export default {
 	    },
 
 	    addWitness: function() {
-	    	this.witnesses.push({name: this.witness});
+	    	this.witnesses.push(this.witness);
 	    	this.witness = '';
 	    },
 
@@ -332,37 +315,138 @@ export default {
 	    	this.witnesses.splice(index, 1)
 	    },
 
-	    ...mapActions("account", ["getUserProfile"]),
-	    async loadUserProfile() {
-	      this.loadAccountHistory();
-	      if (
-	        !this.$store.state.account.profiles.hasOwnProperty(this.accountName)
-	      ) {
-	        await this.getUserProfile(this.accountName);
-	      }
-	      const accountProfile = this.$store.state.account.profiles[
-	        this.accountName
-	      ];
-	      if (!accountProfile) {
-	        return;
-	      }
+	    initBet: async function() {
 
-	      this.accountHasProfile = true;
-	      this.profileAccountName = this.accountName;
-	      this.avatar = accountProfile.avatar;
-	      this.bio = accountProfile.bio;
-	      this.status = accountProfile.status;
-	      this.displayName = accountProfile.display_name;
-	    },
-	    search() {
-	      this.loadUserProfile();
-	    },
-	    async loadAccountHistory() {
-	      const actionHistory = await this.$hyperion.get(
-	        `/v2/history/get_actions?limit=20&account=${this.accountName}`
-	      );
-	      this.accountHistory = actionHistory.data.actions || [];
+	    	// CREATE ACTION TO PROPOSE
+	    	const actions = [
+				{
+					account: 'esmeesmeesme',
+					name: 'initbet',
+					authorization: [
+					  {
+					    actor: this.minister,
+					    permission: 'active',
+					  }
+					],
+					data: {
+						// account: 'bmabwprunawr',
+						// permission: 'active',
+						// parent: '',
+						// auth: {
+						// 	threshold: 1,
+						// 	keys: [{
+						// 	    key: 'PUB_K1_8UDW64nhLjyESfendHw1PuNvJQgYzJWkG2tt7NvC9P8gZQTFWC',
+						// 	    weight: 1
+						// 	}],
+						// 	accounts:[],
+						// 	waits:[]
+						// }
+						bet_name: this.bet_name,
+						minister: this.accountName,
+						bettors: this.bettor_names,
+						witnesses: this.witnesses,
+						loss: this.loss,
+						bettor_quantity: this.bettor_amounts
+					}
+				}
+			];
+
+			(async () => {
+				const serialized_actions = await this.$store.$api.serializeActions(actions)
+
+				// FILL THE LIST OF REQUESTED PARTICIPANTS TO SIGN
+				this.requested[0].actor = this.minister
+				for (var i = 0; i < bettor_names.length; i++) {
+					this.requested.push({
+						actor: this.bettor_names[i],
+						permission: 'active'
+					});
+				} 
+				for (var i = 0; i < witnesses.length; i++) {
+				  this.requested.push({
+				  	actor: this.witnesses[i],
+				  	permission: 'active'
+				  });
+				} 
+
+				// BUILD THE MULTISIG PROPOSE TRANSACTION
+				proposeInput = {
+					proposer: minister,
+					proposal_name: this.bet_name,
+					requested: this.requested,
+					trx: {
+						expiration: null,
+						ref_block_num: 0,
+						ref_block_prefix: 0,
+						max_net_usage_words: 0,
+						max_cpu_usage_ms: 0,
+						delay_sec: 0,
+						context_free_actions: [],
+						actions: serialized_actions,
+						transaction_extensions: []
+					}
+				};
+
+				//PROPOSE THE TRANSACTION
+				const result = await this.$store.$api.transact({
+					actions: [{
+						account: 'eosio.msig',
+						name: 'propose',
+						authorization: [{
+							actor: this.minister,
+							permission: 'active',
+						}],
+						data: proposeInput,
+					}]
+				}, {
+					blocksBehind: 3,
+					expireSeconds: 30,
+					broadcast: true,
+					sign: true
+				});
+			})();
 	    }
-		},
+
+
+
+	 //    initBet: async function() {  	
+
+	 //    	const actions = [
+	 //        {
+		// 		account: "esmeesmeesme",
+		// 		name: "initbet",
+		// 		data: {
+		// 			bet_name: this.bet_name,
+		// 			minister: this.accountName,
+		// 			bettors: this.bettor_names,
+		// 			witnesses: this.witnesses,
+		// 			loss: this.loss,
+		// 			bettor_quantity: this.bettor_amounts
+		// 		}
+		// 	}
+	 //      ];
+	 //      const transaction = await this.$store.$api.signTransaction(actions);
+		// }
+
+
+		// This was a test
+
+		// initBet: async function() {  	
+
+	 //    	const actions = [
+	 //        {
+		// 		account: "eosio.token",
+		// 		name: "transfer",
+		// 		data: {
+		// 			from: 'esmeesmeesme',
+  //           		to: "bmabwprunawr",
+  //           		quantity: '100.0000 TLOS',
+  //           		memo: ''
+		// 		}
+		// 	}
+	 //      ];
+	 //      const transaction = await this.$store.$api.signTransaction(actions);
+		// }
+	}
 }
 </script>  

@@ -4,11 +4,15 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [
       { path: "", component: () => import("pages/Index.vue") },
-      { path: "/how_does_it_work", component: () => import("pages/HowItWorks.vue") },
-      { path: "/test_form", component: () => import("pages/TestForm.vue") },
+      { path: "/test", component: () => import("pages/Test.vue") },
+      { path: "/how_to_use", component: () => import("pages/HowToUse.vue") },
+      { path: "/bettor", component: () => import("pages/Bettor.vue") },
+      { path: "/witness", component: () => import("pages/Witness.vue") },
+      { path: "/choose_role", component: () => import("pages/ChooseRole.vue") },
+      { path: "/start_wedding", component: () => import("pages/StartWedding.vue") },
       { path: "/highscores", component: () => import("pages/Highscores.vue") },
       { path: "/contact", component: () => import("pages/Contact.vue") },
-      { path: "/donate", component: () => import("pages/Donate.vue") }
+      { path: "/support_me", component: () => import("pages/SupportMe.vue") }
     ]
   },
   {

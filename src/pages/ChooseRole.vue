@@ -79,7 +79,7 @@
 		</div>
 
 		<div v-else>
-			<h2 class="center">Please login to start</h2>
+			<h4 class="center">Please login to start</h4>
 		</div>
 
 	</q-page>

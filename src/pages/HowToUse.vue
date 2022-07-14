@@ -5,7 +5,7 @@
 
    	<div class="row q-pa-sm justify-center">  
 
-   		<div class="col-4">
+   		<div class="col">
       	<q-card flat>
       		<div class="text-h6 text-center text-blue-grey-10">Form interface</div>
       		<q-img
@@ -13,8 +13,8 @@
 		      />
       	</q-card>
       </div>  
-   		
-      <div class="col-4 text-blue-grey-10 text-left">
+
+      <div class="col text-blue-grey-10 text-left">
         <q-card flat>
           <q-card-section> 
             <div class="text-h6">
@@ -59,7 +59,7 @@
         </q-card>
       </div> 
 
-      <div class="col-4">
+      <div class="col">
       	<q-card flat>
       		<q-card-section>
 	      		<div class="text-h6 text-center text-blue-grey-10">Important details</div>
@@ -97,13 +97,17 @@
       			Neither the witnesses nor the minister are required to pay.
       		</q-card-section>
 
+          <q-card-section>
+            The wedding is 
+          </q-card-section>
+
       		<q-card-section>
       			Before confirming the wedding, if any of the bettors prefers not to continue with the bet they can cancel it and there will be no money loss, since it will not be transfered yet.
       		</q-card-section>
 
-      		<q-card-section>
+<!--       		<q-card-section>
       			All bettors must sent exactly the amount they stated in Step 1. Otherwise the transaction will be rejected.
-      		</q-card-section>
+      		</q-card-section> -->
 
       		<q-card-section>
       			 Once the contract is executed if any of the bettors wants to cancel the wedding (Divorce) all betors will lose the percentage of the money they sent and the remaining will be refunded. The lost money will be sent to the eosio account.
@@ -113,87 +117,6 @@
       </div> 
 
     </div>    
-
-<!-- 
-          <q-card-section> 
-            <div class="text-bold">
-              Important:
-            </div>  
-          </q-card-section>  
-
-          <q-card-section> 
-            <p>
-              - All participants must have a TELOS account to participate, since each account is needed to sign the contract.
-            </p>  
-            <p>- The "Bet Name" must have 12 characters long. You can choose lowercase letters from a to z and nmbers from 1 to 5.</p>
-            <p>- The minimum amount to bet is 30 TLOS.</p>
-            <p>- </p>
-            <p>- </p>
-          </q-card-section>
-
-        </q-card>    
-      </div> 
-
-	          <q-card-section>
-	          	<div class="text-bold">
-              	Important:
-            	</div> 
-	          </q-card-section>
-
-	          	<q-card-section>
-	          		<p>- </p>
-	          		<p>- </p>
-	          		<p>- If the bettors do not agree on who is going to pay the ram, the minister can choose one randomly.</p>
-	          </q-card-section>
-
-	        </q-card>    
-	      </div> 
-
-
-	          <q-card-section>
-	          	<div class="text-bold">
-              	Notice:
-            	</div>
-	          </q-card-section>
-
-	          <q-card-section>
-	          	<p>- </p>
-	          	<p>- </p>
-	          	<p>- </p>
-	          </q-card-section>
-
-	        </q-card>    
-	      </div> 
-
-	      <div class="col-3 text-blue-grey-10 text-left">
-	        <q-card flat>
-	          <q-card-section> 
-	            <div class="text-h6">
-	              Step 4: Transfer the funds
-	            </div>
-	          </q-card-section>   
-	          <q-card-section> 
-	            <div>
-	              Finally, the only thing left is for each bettor to send the amount they bet and once all funds are sent the contract will execute and the wedding will be registered on the blockchain.
-	            </div>  
-	          </q-card-section>  
-
-	          <q-card-section>
-	          	<div class="text-bold">
-              	Important:
-            	</div>
-	          </q-card-section>
-
-	          <q-card-section>
-	          	<p>- </p>	          	
-	          	<p>-</p>
-	          </q-card-section> 
-
-
-	        </q-card>    
-	      </div> 
-
-   	</div> -->
 
 	</q-page>	
 </template>
