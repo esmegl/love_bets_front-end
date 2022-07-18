@@ -264,7 +264,6 @@ export default {
 	    return {
 			bet_name: '',
 			loss: 0,
-			minister_control: '',
 			bettor_name: '',
 			bettor_names: [],
 			bettor_quantity: 0,
@@ -297,7 +296,7 @@ export default {
 	        	amount: this.bettor_quantity
 	        });
 	        this.bettor_names.push(this.bettor_name);
-	        this.bettor_amounts.push(this.bettor_quantity);
+	        this.bettor_amounts.push(`${this.bettor_quantity} TLOS`);
 	        this.bettor_name = '';
 	        this.bettor_quantity = 0;
 	    },
@@ -324,45 +323,33 @@ export default {
 					name: 'initbet',
 					authorization: [
 					  {
-					    actor: this.minister,
+					    actor: this.accountName,
 					    permission: 'active',
 					  }
 					],
 					data: {
-						// account: 'bmabwprunawr',
-						// permission: 'active',
-						// parent: '',
-						// auth: {
-						// 	threshold: 1,
-						// 	keys: [{
-						// 	    key: 'PUB_K1_8UDW64nhLjyESfendHw1PuNvJQgYzJWkG2tt7NvC9P8gZQTFWC',
-						// 	    weight: 1
-						// 	}],
-						// 	accounts:[],
-						// 	waits:[]
-						// }
 						bet_name: this.bet_name,
 						minister: this.accountName,
 						bettors: this.bettor_names,
 						witnesses: this.witnesses,
-						loss: this.loss,
+						loss: `${this.loss * 0.01} LOSS`,
 						bettor_quantity: this.bettor_amounts
 					}
 				}
 			];
 
 			(async () => {
-				const serialized_actions = await this.$store.$api.serializeActions(actions)
+				const serialized_actions = await this.$store.$defaultApi.serializeActions(actions)
 
 				// FILL THE LIST OF REQUESTED PARTICIPANTS TO SIGN
-				this.requested[0].actor = this.minister
-				for (var i = 0; i < bettor_names.length; i++) {
+				this.requested[0].actor = this.accountName
+				for (var i = 0; i < this.bettor_names.length; i++) {
 					this.requested.push({
 						actor: this.bettor_names[i],
 						permission: 'active'
 					});
 				} 
-				for (var i = 0; i < witnesses.length; i++) {
+				for (var i = 0; i < this.witnesses.length; i++) {
 				  this.requested.push({
 				  	actor: this.witnesses[i],
 				  	permission: 'active'
@@ -371,7 +358,7 @@ export default {
 
 				// BUILD THE MULTISIG PROPOSE TRANSACTION
 				proposeInput = {
-					proposer: minister,
+					proposer: this.accountName,
 					proposal_name: this.bet_name,
 					requested: this.requested,
 					trx: {
@@ -382,21 +369,21 @@ export default {
 						max_cpu_usage_ms: 0,
 						delay_sec: 0,
 						context_free_actions: [],
-						actions: serialized_actions,
+						actions: this.serialized_actions,
 						transaction_extensions: []
 					}
 				};
 
 				//PROPOSE THE TRANSACTION
-				const result = await this.$store.$api.transact({
+				const result = await this.$store.$defaultApi.transact({
 					actions: [{
 						account: 'eosio.msig',
 						name: 'propose',
 						authorization: [{
-							actor: this.minister,
+							actor: this.accountName,
 							permission: 'active',
 						}],
-						data: proposeInput,
+						data: this.proposeInput,
 					}]
 				}, {
 					blocksBehind: 3,
@@ -406,47 +393,6 @@ export default {
 				});
 			})();
 	    }
-
-
-
-	 //    initBet: async function() {  	
-
-	 //    	const actions = [
-	 //        {
-		// 		account: "esmeesmeesme",
-		// 		name: "initbet",
-		// 		data: {
-		// 			bet_name: this.bet_name,
-		// 			minister: this.accountName,
-		// 			bettors: this.bettor_names,
-		// 			witnesses: this.witnesses,
-		// 			loss: this.loss,
-		// 			bettor_quantity: this.bettor_amounts
-		// 		}
-		// 	}
-	 //      ];
-	 //      const transaction = await this.$store.$api.signTransaction(actions);
-		// }
-
-
-		// This was a test
-
-		// initBet: async function() {  	
-
-	 //    	const actions = [
-	 //        {
-		// 		account: "eosio.token",
-		// 		name: "transfer",
-		// 		data: {
-		// 			from: 'esmeesmeesme',
-  //           		to: "bmabwprunawr",
-  //           		quantity: '100.0000 TLOS',
-  //           		memo: ''
-		// 		}
-		// 	}
-	 //      ];
-	 //      const transaction = await this.$store.$api.signTransaction(actions);
-		// }
 	}
 }
 </script>  
